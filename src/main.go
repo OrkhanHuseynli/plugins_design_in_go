@@ -2,13 +2,14 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/plugins_design_in_go/src/app"
-	"github.com/plugins_design_in_go/src/models"
-	"github.com/plugins_design_in_go/src/plugins/controllerplugin"
-	"github.com/plugins_design_in_go/src/plugins/dbplugin"
+	"plugins_design_in_go/src/app"
+	"plugins_design_in_go/src/models"
+	"plugins_design_in_go/src/plugins/controllerplugin"
+	"plugins_design_in_go/src/plugins/dbplugin"
 
-	database "github.com/plugins_design_in_go/src/repository"
+	database "plugins_design_in_go/src/repository"
 
 	//_ "github.com/jinzhu/gorm/dialects/mysql"
 	//"sample_graphql_in_go/src/controller"
@@ -45,14 +46,16 @@ func main() {
 
 	app := app.New("plugins_app")
 	dbPlugin := dbplugin.NewDbPlugin()
-	servicepPlugin := controllerplugin.NewServicePlugin(dbPlugin)
+	servicepPlugin := controllerplugin.NewControllerPlugin(dbPlugin)
+	fmt.Println("******* REGISTERING PLUGINS *******")
 	app.Register(dbPlugin)
 	app.Register(servicepPlugin)
 
 	ctx, ctxCancel := context.WithCancel(context.Background())
 	ctx = context.WithValue(context.Background(), models.ServiceNameKey, "ServiceNameKey")
 	ctx = context.WithValue(context.Background(), models.DatabasePluginKey, "DatabasePluginKey")
-	ctx = context.WithValue(ctx, models.ServiceNameKey, "ServiceNameKey")
+	ctx = context.WithValue(ctx, models.DatabasePluginKey, "DB Plugin")
+	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
 	app.Start(ctx, ctxCancel)
 	dbManager.AddPayment(&models.Payment{Author:"Edo", Product:"router", Sum:"400"})
 }

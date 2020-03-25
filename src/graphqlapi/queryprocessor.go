@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/graphql-go/graphql"
-	"github.com/plugins_design_in_go/src/graphqlapi/components"
+	"plugins_design_in_go/src/graphqlapi/components"
 	"log"
 )
 

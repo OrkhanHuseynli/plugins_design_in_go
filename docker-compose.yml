@@ -8,16 +8,24 @@ services:
       - "5000:5000"
     depends_on:
       - db
+
+#  db:
+#    image: "mcr.microsoft.com/mssql/server"
+#    environment:
+#      SA_PASSWORD: "password"
+#      ACCEPT_EULA: "Y"
+#    ports:
+#      - "2500:1433"
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     restart: always
     environment:
-      MYSQL_DATABASE: 'db'
+      MYSQL_DATABASE: 'test'
       MYSQL_USER: 'user'
       # You can use whatever password you like
-      MYSQL_PASSWORD: 'password'
+      MYSQL_PASSWORD: 'user'
       # Password for root access
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'user'
     ports:
       - '3306:3306'
     expose:

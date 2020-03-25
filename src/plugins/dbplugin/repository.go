@@ -2,7 +2,7 @@ package dbplugin
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/plugins_design_in_go/src/models"
+	"plugins_design_in_go/src/models"
 )
 
 type Repository struct {

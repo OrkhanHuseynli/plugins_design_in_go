@@ -2,8 +2,9 @@ package database
 
 import (
 	"github.com/jinzhu/gorm"
-	"github.com/plugins_design_in_go/src/models"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
+	"plugins_design_in_go/src/models"
 )
 
 type DbManager struct {

@@ -14,6 +14,11 @@ type PaymentResponse struct {
 type Payment struct {
 	//gorm.Model
 	Author    string	`json:"author"`
-	Product   string	`json:"product"`
+	Product   Product	`gorm:"foreignkey:Author"`
 	Sum		  string	`json:"sum"`
+}
+
+type Product struct {
+	Name string
+	Type string
 }

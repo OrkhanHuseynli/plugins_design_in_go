@@ -2,27 +2,32 @@ package dbplugin
 
 import (
 	"context"
+	"fmt"
 	"github.com/jinzhu/gorm"
-	"github.com/plugins_design_in_go/src/models"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"
+	"plugins_design_in_go/src/models"
 )
 
-type Plugin struct {
+type DbPlugin struct {
 	pluginName string
 	Repository
 }
 
-func NewDbPlugin() *Plugin {
-	return &Plugin{}
+func NewDbPlugin() *DbPlugin {
+	return &DbPlugin{}
 }
 
-func (p *Plugin) Name() string {
+func (p *DbPlugin) Name() string {
 	return p.pluginName
 }
 
-func (p *Plugin) Initialize(ctx context.Context) error {
+func (p *DbPlugin) Initialize(ctx context.Context) error {
 	p.pluginName = ctx.Value(models.DatabasePluginKey).(string)
-	db, err := gorm.Open("mysql", "user:password@(db:3306)/db?charset=utf8&parseTime=True&loc=Local")
+	dbHost := ctx.Value(models.DB_HOST).(string)
+	dbConnString := fmt.Sprintf("%s%s%s", "u:p@(",dbHost,":3306)/test?charset=utf8&parseTime=True&loc=Local")
+	fmt.Println(dbConnString)
+	db, err := gorm.Open("mysql", dbConnString)
 	if err != nil {
 		log.Println(err)
 		return err
@@ -32,11 +37,11 @@ func (p *Plugin) Initialize(ctx context.Context) error {
 }
 
 func migrateSchemas(db *gorm.DB) *gorm.DB{
-	return db.AutoMigrate(&models.Payment{})
+	return db.AutoMigrate(&models.Payment{}, &models.Product{})
 }
 
 
-func (p *Plugin) Stop() error {
+func (p *DbPlugin) Stop() error {
 	return p.db.Close()
 }
 
