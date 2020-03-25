@@ -9,7 +9,7 @@ LABEL maintainer="Orkhan Huseynli"
 WORKDIR /app
 
 # Copy the source from the current directory to the Working Directory inside the container
-COPY sample_graphql_in_go ./
+COPY ./ ./
 
 
 WORKDIR /app/src

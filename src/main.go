@@ -24,13 +24,13 @@ type Product struct {
 func main() {
 
 	//Query
-	query := `
-		{
-			payment(author: "Mitchel") {
-					author
-				}
-		}
-	`
+	//query := `
+	//	{
+	//		payment(author: "Mitchel") {
+	//				author
+	//			}
+	//	}
+	//`
 
 	//payments := dbManager.GetPaymentsByAuthor("Edo")
 
