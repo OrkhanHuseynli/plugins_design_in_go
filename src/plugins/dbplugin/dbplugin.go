@@ -3,8 +3,8 @@ package dbplugin
 import (
 	"context"
 	"github.com/jinzhu/gorm"
+	"github.com/plugins_design_in_go/src/models"
 	"log"
-	"sample_graphql_in_go/src/models"
 )
 
 type Plugin struct {

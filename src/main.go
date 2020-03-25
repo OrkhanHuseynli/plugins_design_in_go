@@ -3,15 +3,16 @@ package main
 import (
 	"context"
 	"github.com/jinzhu/gorm"
-	"plugins_design_in_go/src/app"
-	"plugins_design_in_go/src/plugins/dbplugin"
-	"plugins_design_in_go/src/plugins/controllerplugin"
-	database "plugins_design_in_go/src/repository"
+	"github.com/plugins_design_in_go/src/app"
+	"github.com/plugins_design_in_go/src/models"
+	"github.com/plugins_design_in_go/src/plugins/controllerplugin"
+	"github.com/plugins_design_in_go/src/plugins/dbplugin"
+
+	database "github.com/plugins_design_in_go/src/repository"
 
 	//_ "github.com/jinzhu/gorm/dialects/mysql"
 	//"sample_graphql_in_go/src/controller"
 	//"sample_graphql_in_go/src/graphqlapi"
-	"sample_graphql_in_go/src/models"
 	//database "sample_graphql_in_go/src/repository"
 )
 

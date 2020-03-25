@@ -1,4 +1,4 @@
-module sample_graphql_in_go
+module github.com/plugins_design_in_go
 
 go 1.13
 

@@ -2,9 +2,9 @@ package controller
 
 import (
 	"fmt"
+	"github.com/plugins_design_in_go/src/plugins/dbplugin"
 	"log"
 	"net/http"
-	"plugins_design_in_go/src/plugins/dbplugin"
 )
 
 type Controller struct {

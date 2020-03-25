@@ -2,8 +2,8 @@ package controller
 
 import (
 	"encoding/json"
+	"github.com/plugins_design_in_go/src/models"
 	"net/http"
-	"sample_graphql_in_go/src/models"
 )
 
 type ServiceHandler struct {

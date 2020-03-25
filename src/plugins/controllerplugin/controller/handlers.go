@@ -2,9 +2,10 @@ package controller
 
 import (
 	"encoding/json"
+	"github.com/plugins_design_in_go/src/models"
+	"github.com/plugins_design_in_go/src/plugins/dbplugin"
 	"net/http"
-	"plugins_design_in_go/src/models"
-	"plugins_design_in_go/src/plugins/dbplugin"
+
 )
 
 type SimpleHandler struct {

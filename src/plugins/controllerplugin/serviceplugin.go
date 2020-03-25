@@ -2,8 +2,8 @@ package controllerplugin
 
 import (
 	"context"
-	"plugins_design_in_go/src/models"
-	"plugins_design_in_go/src/plugins/dbplugin"
+	"github.com/plugins_design_in_go/src/models"
+	"github.com/plugins_design_in_go/src/plugins/dbplugin"
 )
 
 type Plugin struct {
