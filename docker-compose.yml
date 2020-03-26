@@ -26,10 +26,11 @@ services:
       MYSQL_PASSWORD: 'user'
       # Password for root access
       MYSQL_ROOT_PASSWORD: 'user'
+      MYSQL_TCP_PORT: '3307'
     ports:
-      - '3306:3306'
+      - '3307:3307'
     expose:
-      - '3306'
+      - '3307'
     volumes:
       - my-db:/var/lib/mysql
   # Names our volume

@@ -25,7 +25,8 @@ func (p *DbPlugin) Name() string {
 func (p *DbPlugin) Initialize(ctx context.Context) error {
 	p.pluginName = ctx.Value(models.DatabasePluginKey).(string)
 	dbHost := ctx.Value(models.DB_HOST).(string)
-	dbConnString := fmt.Sprintf("%s%s%s", "u:p@(",dbHost,":3306)/test?charset=utf8&parseTime=True&loc=Local")
+	dbPort := ctx.Value(models.DB_PORT).(string)
+	dbConnString := fmt.Sprintf("%s%s%s%s%s", "user:user@(",dbHost,":", dbPort,")/test?charset=utf8&parseTime=True&loc=Local")
 	fmt.Println(dbConnString)
 	db, err := gorm.Open("mysql", dbConnString)
 	if err != nil {

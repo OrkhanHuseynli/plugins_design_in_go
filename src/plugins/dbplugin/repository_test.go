@@ -15,6 +15,7 @@ func TestRepository_AddPayment(t *testing.T) {
 	defer cancelCtx()
 	ctx = context.WithValue(ctx, models.DatabasePluginKey, "DB Plugin")
 	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
+	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
 	err := dbplugin.Initialize(ctx)
 	if err != nil {
 		panic("The database failed to init")
