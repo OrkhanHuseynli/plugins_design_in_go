@@ -1,5 +1,7 @@
 package models
 
+import "github.com/jinzhu/gorm"
+
 type SimpleResponse struct {
 	Message string `json:"message"`
 	Date    string `json:"date, omitempty"`
@@ -12,10 +14,10 @@ type PaymentResponse struct {
 
 
 type Payment struct {
-	//gorm.Model
-	Author    string	`json:"author"`
-	Product   Product	`gorm:"foreignkey:Author"`
-	Sum		  string	`json:"sum"`
+	gorm.Model
+	Author    string	//`json:"author"`
+	Product   Product	`gorm:"foreignkey:ProductName"`
+	Sum		  string	//`json:"sum"`
 }
 
 func (Payment) TableName() string {
@@ -23,8 +25,9 @@ func (Payment) TableName() string {
 }
 
 type Product struct {
-	Name string
-	Type string
+	gorm.Model
+	ProductName string //`json:"name"`
+	Type        string //`json:"type"`
 }
 
 func (Product) TableName() string {

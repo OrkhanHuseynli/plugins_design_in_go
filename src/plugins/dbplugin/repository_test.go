@@ -20,10 +20,10 @@ func TestRepository_AddPayment(t *testing.T) {
 	if err != nil {
 		panic("The database failed to init")
 	}
-	product1 := models.Product{"mockname", "food"}
-	product2 := models.Product{"vikname", "food"}
-	payment1 := models.Payment{"Moris", product1, "399"}
-	payment2 := models.Payment{"Moris", product2, "444"}
+	product1 := models.Product{ProductName: "mockname", Type:"food"}
+	product2 := models.Product{ProductName: "vikname", Type: "food"}
+	payment1 := models.Payment{Author:"Moris", Product:product1,Sum: "399"}
+	payment2 := models.Payment{Author:"Dotis", Product:product2,Sum: "777"}
 	dbplugin.AddPayment(&payment1)
 	dbplugin.AddPayment(&payment2)
 }
