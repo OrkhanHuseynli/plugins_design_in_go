@@ -22,7 +22,7 @@ func NewDatabase() *DbManager {
 }
 
 func migrateSchemas(db *gorm.DB) {
-	db.AutoMigrate(&models.Payment{})
+	db.AutoMigrate(&models.Payment{}, &models.Product{})
 }
 
 func (d *DbManager) AddPayment(payment *models.Payment)  {

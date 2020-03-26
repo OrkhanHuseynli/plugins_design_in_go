@@ -28,11 +28,5 @@ services:
       MYSQL_ROOT_PASSWORD: 'user'
       MYSQL_TCP_PORT: '3307'
     ports:
-      - '3307:3307'
-    expose:
-      - '3307'
-    volumes:
-      - my-db:/var/lib/mysql
+      - '127.0.0.1:3307:3307'
   # Names our volume
-volumes:
-  my-db:
