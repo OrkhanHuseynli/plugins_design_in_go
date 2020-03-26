@@ -18,7 +18,15 @@ type Payment struct {
 	Sum		  string	`json:"sum"`
 }
 
+func (Payment) TableName() string {
+	return "payments"
+}
+
 type Product struct {
 	Name string
 	Type string
+}
+
+func (Product) TableName() string {
+	return "products"
 }

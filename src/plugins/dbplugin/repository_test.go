@@ -27,3 +27,18 @@ func TestRepository_AddPayment(t *testing.T) {
 	dbplugin.AddPayment(&payment1)
 	dbplugin.AddPayment(&payment2)
 }
+
+func TestRepository_DeletePaymentsByAuthor(t *testing.T) {
+	author := "Moris"
+	dbplugin := NewDbPlugin()
+	ctx, cancelCtx := context.WithCancel(context.Background())
+	defer cancelCtx()
+	ctx = context.WithValue(ctx, models.DatabasePluginKey, "DB Plugin")
+	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
+	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
+	err := dbplugin.Initialize(ctx)
+	if err != nil {
+		panic("The database failed to init")
+	}
+	dbplugin.DeletePaymentsByAuthor(author)
+}

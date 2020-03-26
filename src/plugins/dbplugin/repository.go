@@ -18,3 +18,8 @@ func (r *Repository) GetPaymentsByAuthor(author string)  *[]models.Payment {
 	r.db.Where("author = ?", author).Find(&payments)
 	return  &payments
 }
+
+func (r *Repository) DeletePaymentsByAuthor(author string)  bool {
+	r.db.Where("author = ?", author).Delete(&models.Payment{})
+	return true
+}
