@@ -12,10 +12,10 @@ type PaymentResponse struct {
 
 
 type Payment struct {
-	Author    string	//`json:"author"`
-	ProductName string
+	Author    string	`json:"author"`
+	ProductName string	`json:"productName"`
 	Product   Product	`gorm:"foreignkey:ProductName;association_foreignkey:Name"`
-	Sum		  string	//`json:"sum"`
+	Sum		  string	`json:"sum"`
 }
 
 func (Payment) TableName() string {
@@ -23,8 +23,8 @@ func (Payment) TableName() string {
 }
 
 type Product struct {
-	Name string //`json:"name"`
-	Type string //`json:"type"`
+	Name string `json:"name"`
+	Type string `json:"type"`
 }
 
 func (Product) TableName() string {
