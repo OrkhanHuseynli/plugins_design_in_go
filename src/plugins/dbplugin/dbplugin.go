@@ -28,6 +28,7 @@ func (p *DbPlugin) Name() string {
 
 func (p *DbPlugin) Initialize(ctx context.Context) error {
 	p.pluginName = ctx.Value(models.DatabasePluginNameKey).(string)
+	fmt.Printf("Starting %s \n", p.pluginName)
 	dbHost := ctx.Value(models.DB_HOST).(string)
 	dbPort := ctx.Value(models.DB_PORT).(string)
 	dbConnString := fmt.Sprintf("%s%s%s%s%s", "user:user@(",dbHost,":", dbPort,")/test?charset=utf8&parseTime=True&loc=Local")

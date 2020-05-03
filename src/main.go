@@ -52,9 +52,11 @@ func main() {
 	app.Register(servicepPlugin)
 
 	ctx, ctxCancel := context.WithCancel(context.Background())
-	ctx = context.WithValue(context.Background(), models.ServiceNameKey, "ServiceNameKey")
-	ctx = context.WithValue(context.Background(), models.DatabasePluginNameKey, "DatabasePluginNameKey")
+	ctx = context.WithValue(ctx, models.ServiceNameKey, "ServiceNameKey")
+	ctx = context.WithValue(ctx, models.ServicePluginNameKey, "Service PLugin")
+	ctx = context.WithValue(ctx, models.ServicePortNumber, "5000")
 	ctx = context.WithValue(ctx, models.DatabasePluginNameKey, "DB Plugin")
 	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
+	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
 	app.Start(ctx, ctxCancel)
 }

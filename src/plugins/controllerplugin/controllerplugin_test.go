@@ -5,7 +5,6 @@ import (
 	"plugins_design_in_go/src/models"
 	"plugins_design_in_go/src/plugins/dbplugin"
 	"testing"
-	"time"
 )
 
 
@@ -24,8 +23,8 @@ func TestControllerPlugin(t *testing.T) {
 
 	ctrpl := NewControllerPlugin(dbpl)
 	ctrpl.Initialize(ctx)
-	time.Sleep(3 * time.Second)
-	ctrpl.Stop()
+	//time.Sleep(3 * time.Second)
+	//ctrpl.Stop()
 	//dbplugin := dbplugin.NewDbPlugin()
 	//ctx, cancelCtx := context.WithCancel(context.Background())
 	//defer cancelCtx()
