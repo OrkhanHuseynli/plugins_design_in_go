@@ -8,11 +8,16 @@ import (
 	"plugins_design_in_go/src/plugins/dbplugin"
 )
 
+type IServer interface {
+	ListenAndServe() error
+	Shutdown(ctx context.Context) error
+}
+
 type ControllerPlugin struct {
 	pluginName string
 	dbPlugin dbplugin.IDbPlugin
 	ctx context.Context
-	server *http.Server
+	server IServer
 	//cancel context.CancelFunc
 }
 
@@ -40,9 +45,11 @@ func (p *ControllerPlugin) Initialize(ctx context.Context) error {
 
 	listenAddr := ":" + port
 
-	p.server = &http.Server{
-		Addr:         listenAddr,
-		Handler:      router,
+	if p.server == nil {
+		p.server = &http.Server{
+			Addr:         listenAddr,
+			Handler:      router,
+		}
 	}
 
 	if err := p.server.ListenAndServe(); err != nil && err != http.ErrServerClosed {
