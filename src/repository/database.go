@@ -12,7 +12,7 @@ type DbManager struct {
 }
 
 func NewDatabase() *DbManager {
-	db, err := gorm.Open("mysql", "user:password@(db:3306)/db?charset=utf8&parseTime=True&loc=Local")
+	db, err := gorm.Open("mysql", "user:user@(db:3307)/test?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		log.Println(err)
 		panic("failed to connect database")

@@ -1,4 +1,4 @@
-package controller
+package controllerplugin
 
 import (
 	"encoding/json"
@@ -8,10 +8,10 @@ import (
 )
 
 type SimpleHandler struct {
-	dbPlugin *dbplugin.DbPlugin
+	dbPlugin dbplugin.IDbPlugin
 }
 
-func NewSimpleHandler(dbPlugin *dbplugin.DbPlugin) http.Handler {
+func NewSimpleHandler(dbPlugin dbplugin.IDbPlugin) http.Handler {
 	return SimpleHandler{dbPlugin:dbPlugin}
 }
 
@@ -34,11 +34,11 @@ func (h SimpleHandler) handlePostRequest(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
-	if payment.Author == "" ||  payment.Sum == "" || payment.Product == "" {
+	if payment.Author == "" ||  payment.Sum == "" || &payment.Product == nil {
 		http.Error(w, "Required body fields are empty", http.StatusUnprocessableEntity)
 		return
 	}
-	h.dbPlugin.Repository.AddPayment(&payment)
+	h.dbPlugin.AddPayment(&payment)
 	response := models.SimpleResponse{Message: "Your payment was successfully put in the process" }
 	encoder := json.NewEncoder(w)
 	encoder.Encode(&response)

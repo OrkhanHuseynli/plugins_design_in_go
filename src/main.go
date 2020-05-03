@@ -53,9 +53,8 @@ func main() {
 
 	ctx, ctxCancel := context.WithCancel(context.Background())
 	ctx = context.WithValue(context.Background(), models.ServiceNameKey, "ServiceNameKey")
-	ctx = context.WithValue(context.Background(), models.DatabasePluginKey, "DatabasePluginKey")
-	ctx = context.WithValue(ctx, models.DatabasePluginKey, "DB Plugin")
+	ctx = context.WithValue(context.Background(), models.DatabasePluginNameKey, "DatabasePluginNameKey")
+	ctx = context.WithValue(ctx, models.DatabasePluginNameKey, "DB Plugin")
 	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
 	app.Start(ctx, ctxCancel)
-	dbManager.AddPayment(&models.Payment{Author:"Edo", Product:"router", Sum:"400"})
 }

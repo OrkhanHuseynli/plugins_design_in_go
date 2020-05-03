@@ -9,9 +9,13 @@ import (
 	"plugins_design_in_go/src/models"
 )
 
+type IDbPlugin interface {
+	IRepository
+}
+
 type DbPlugin struct {
 	pluginName string
-	Repository
+	IRepository
 }
 
 func NewDbPlugin() *DbPlugin {
@@ -23,17 +27,17 @@ func (p *DbPlugin) Name() string {
 }
 
 func (p *DbPlugin) Initialize(ctx context.Context) error {
-	p.pluginName = ctx.Value(models.DatabasePluginKey).(string)
+	p.pluginName = ctx.Value(models.DatabasePluginNameKey).(string)
 	dbHost := ctx.Value(models.DB_HOST).(string)
 	dbPort := ctx.Value(models.DB_PORT).(string)
 	dbConnString := fmt.Sprintf("%s%s%s%s%s", "user:user@(",dbHost,":", dbPort,")/test?charset=utf8&parseTime=True&loc=Local")
-	fmt.Println(dbConnString)
+
 	db, err := gorm.Open("mysql", dbConnString)
 	if err != nil {
 		log.Println(err)
 		return err
 	}
-	p.db = migrateSchemas(db)
+	p.setDB(migrateSchemas(db))
 	return nil
 }
 
@@ -43,6 +47,6 @@ func migrateSchemas(db *gorm.DB) *gorm.DB{
 
 
 func (p *DbPlugin) Stop() error {
-	return p.db.Close()
+	return p.getDB().Close()
 }
 
