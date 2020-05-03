@@ -2,6 +2,7 @@ package controllerplugin
 
 import (
 	"context"
+	"github.com/stretchr/testify/assert"
 	"plugins_design_in_go/src/models"
 	"plugins_design_in_go/src/plugins/dbplugin"
 	"testing"
@@ -33,7 +34,9 @@ func TestControllerPlugin(t *testing.T) {
 
 	ctrpl := NewControllerPlugin(dbpl)
 	ctrpl.server = MockServer{}
-	ctrpl.Initialize(ctx)
+	err := ctrpl.Initialize(ctx)
+	assert.NoError(t, err)
 	time.Sleep(3 * time.Second)
-	ctrpl.Stop()
+	err = ctrpl.Stop()
+	assert.NoError(t, err)
 }
