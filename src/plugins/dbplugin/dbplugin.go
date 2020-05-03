@@ -19,6 +19,7 @@ type DbPlugin struct {
 }
 
 func NewDbPlugin() *DbPlugin {
+
 	return &DbPlugin{}
 }
 
@@ -32,13 +33,17 @@ func (p *DbPlugin) Initialize(ctx context.Context) error {
 	dbHost := ctx.Value(models.DB_HOST).(string)
 	dbPort := ctx.Value(models.DB_PORT).(string)
 	dbConnString := fmt.Sprintf("%s%s%s%s%s", "user:user@(",dbHost,":", dbPort,")/test?charset=utf8&parseTime=True&loc=Local")
-
 	db, err := gorm.Open("mysql", dbConnString)
 	if err != nil {
+		fmt.Println("Failed when connecting to DB")
 		log.Println(err)
 		return err
 	}
-	p.setDB(migrateSchemas(db))
+	db = migrateSchemas(db)
+	p.IRepository = NewRepository(db)
+	fmt.Printf("DB Schema has been migrated\n")
+	//p.setDB(db)
+	fmt.Printf("%s has been initalized\n", p.pluginName)
 	return nil
 }
 
@@ -48,6 +53,6 @@ func migrateSchemas(db *gorm.DB) *gorm.DB{
 
 
 func (p *DbPlugin) Stop() error {
-	return p.getDB().Close()
+	return p.GetDB().Close()
 }
 

@@ -10,13 +10,13 @@ type MockRepository struct {
 	MockObject models.Payment
 }
 
-func  (r *MockRepository) getDB() *gorm.DB {
+func  (r *MockRepository) GetDB() *gorm.DB {
 	return r.db
 }
 
-func  (r *MockRepository) setDB(db  *gorm.DB) {
-	r.db = db
-}
+//func  (r *MockRepository) setDB(db  *gorm.DB) {
+//	r.db = db
+//}
 
 func (r *MockRepository) AddPayment(payment *models.Payment)  {
 	r.db.Create(payment)

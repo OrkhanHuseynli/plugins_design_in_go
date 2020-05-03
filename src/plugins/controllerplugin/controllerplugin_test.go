@@ -5,6 +5,7 @@ import (
 	"plugins_design_in_go/src/models"
 	"plugins_design_in_go/src/plugins/dbplugin"
 	"testing"
+	"time"
 )
 
 
@@ -19,12 +20,12 @@ func TestControllerPlugin(t *testing.T) {
 	ctx = context.WithValue(ctx, models.DatabasePluginNameKey, "DB Plugin")
 	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
 	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
-	ctx = context.WithValue(ctx, models.ServicePortNumber, "5040")
+	ctx = context.WithValue(ctx, models.ServicePortNumber, "5000")
 
 	ctrpl := NewControllerPlugin(dbpl)
 	ctrpl.Initialize(ctx)
-	//time.Sleep(3 * time.Second)
-	//ctrpl.Stop()
+	time.Sleep(3 * time.Second)
+	ctrpl.Stop()
 	//dbplugin := dbplugin.NewDbPlugin()
 	//ctx, cancelCtx := context.WithCancel(context.Background())
 	//defer cancelCtx()

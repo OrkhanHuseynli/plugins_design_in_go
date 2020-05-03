@@ -6,8 +6,8 @@ import (
 )
 
 type IRepository interface {
-	setDB(db *gorm.DB)
-	getDB() *gorm.DB
+	//setDB(db *gorm.DB)
+	GetDB() *gorm.DB
 	AddPayment(payment *models.Payment)
 	GetPaymentsByAuthor(author string) []models.Payment
 	DeletePaymentsByAuthor(author string) bool
@@ -18,13 +18,17 @@ type Repository struct {
 	db *gorm.DB
 }
 
-func (r *Repository) getDB() *gorm.DB {
+func NewRepository(db *gorm.DB) *Repository {
+	return &Repository{db:db}
+}
+
+func (r *Repository) GetDB() *gorm.DB {
 	return r.db
 }
 
-func (r *Repository) setDB(db *gorm.DB) {
-	r.db = db
-}
+//func (r *Repository) setDB(db *gorm.DB) {
+//	r.db = db
+//}
 
 func (r *Repository) AddPayment(payment *models.Payment) {
 	r.db.Create(payment)

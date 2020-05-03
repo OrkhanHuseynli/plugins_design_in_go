@@ -56,7 +56,7 @@ func main() {
 	ctx = context.WithValue(ctx, models.ServicePluginNameKey, "Service PLugin")
 	ctx = context.WithValue(ctx, models.ServicePortNumber, "5000")
 	ctx = context.WithValue(ctx, models.DatabasePluginNameKey, "DB Plugin")
-	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
+	ctx = context.WithValue(ctx, models.DB_HOST, "db")
 	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
 	app.Start(ctx, ctxCancel)
 }
