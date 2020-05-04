@@ -9,6 +9,8 @@ import (
 
 //NOTE : these tests can run only with running DB
 // you can run DB in the docker container `docker-compose up db`
+
+
 const (
 	author1 = "Moris"
 	author2 = "Dotis"
