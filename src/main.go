@@ -8,13 +8,6 @@ import (
 	"plugins_design_in_go/src/models"
 	"plugins_design_in_go/src/plugins/controllerplugin"
 	"plugins_design_in_go/src/plugins/dbplugin"
-
-	database "plugins_design_in_go/src/repository"
-
-	//_ "github.com/jinzhu/gorm/dialects/mysql"
-	//"sample_graphql_in_go/src/controller"
-	//"sample_graphql_in_go/src/graphqlapi"
-	//database "sample_graphql_in_go/src/repository"
 )
 
 type Product struct {
