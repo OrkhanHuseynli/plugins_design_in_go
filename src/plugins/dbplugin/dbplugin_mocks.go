@@ -19,7 +19,11 @@ func (m *MockDbPlugin) Initialize(ctx context.Context) error {
 	m.pluginName = ctx.Value(models.DatabasePluginNameKey).(string)
 	dbHost := ctx.Value(models.DB_HOST).(string)
 	dbPort := ctx.Value(models.DB_PORT).(string)
-	dbConnString := fmt.Sprintf("%s%s%s%s%s", "u:u@(",dbHost,":", dbPort,")/test?charset=utf8&parseTime=True&loc=Local")
+	dbName := ctx.Value(models.DB_NAME).(string)
+	dbUser := ctx.Value(models.DB_USER).(string)
+	dbPwd := ctx.Value(models.DB_PWD).(string)
+
+	dbConnString := fmt.Sprintf("%s%s%s%s%s%s%s%s%s%s", dbUser,":",dbPwd,"@(",dbHost,":", dbPort,")/",dbName,"?charset=utf8&parseTime=True&loc=Local")
 	fmt.Printf(dbConnString)
 	return nil
 }

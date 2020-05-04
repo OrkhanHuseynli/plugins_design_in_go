@@ -28,8 +28,11 @@ func TestControllerPlugin(t *testing.T) {
 	defer cancelCtx()
 	ctx = context.WithValue(ctx, models.ServicePluginNameKey, "Service Plugin")
 	ctx = context.WithValue(ctx, models.DatabasePluginNameKey, "DB Plugin")
-	ctx = context.WithValue(ctx, models.DB_HOST, "localhost")
+	ctx = context.WithValue(ctx, models.DB_HOST, "db")
 	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
+	ctx = context.WithValue(ctx, models.DB_NAME, "test")
+	ctx = context.WithValue(ctx, models.DB_USER, "user")
+	ctx = context.WithValue(ctx, models.DB_PWD, "userPwd")
 	ctx = context.WithValue(ctx, models.ServicePortNumber, "5000")
 
 	ctrpl := NewControllerPlugin(dbpl)

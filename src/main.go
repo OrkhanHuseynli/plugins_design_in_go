@@ -58,5 +58,8 @@ func main() {
 	ctx = context.WithValue(ctx, models.DatabasePluginNameKey, "DB Plugin")
 	ctx = context.WithValue(ctx, models.DB_HOST, "db")
 	ctx = context.WithValue(ctx, models.DB_PORT, "3307")
+	ctx = context.WithValue(ctx, models.DB_NAME, "test")
+	ctx = context.WithValue(ctx, models.DB_USER, "user")
+	ctx = context.WithValue(ctx, models.DB_PWD, "user")
 	app.Start(ctx, ctxCancel)
 }
