@@ -25,25 +25,6 @@ type Product struct {
 
 func main() {
 
-	//Query
-	//query := `
-	//	{
-	//		payment(author: "Mitchel") {
-	//				author
-	//			}
-	//	}
-	//`
-
-	//payments := dbManager.GetPaymentsByAuthor("Edo")
-
-	//gqlprocessor := graphqlapi.NewGraphQLProcessor()
-	//gqlprocessor.ExecuteQuery(query)
-	//port := "5000"
-	//service := controller.NewService(port)
-	//service.Run()
-	dbManager := database.NewDatabase()
-	defer dbManager.Database.Close()
-
 	app := app.New("plugins_app")
 	dbPlugin := dbplugin.NewDbPlugin()
 	servicepPlugin := controllerplugin.NewControllerPlugin(dbPlugin)
